@@ -4,7 +4,13 @@ let qrDetector = window.BarcodeDetector ? new window.BarcodeDetector({
 
 function analyze() {
     if (qrDetector == undefined){
-
+        document.getElementById("stop").style.display = "none";
+        document.getElementById("start").style.display = "none";
+        terminateStream();
+        uiElem.style.background = "url(../../static/UnsupportedBrowser.jpg)";
+        uiElem.style.backgroundSize = "cover";
+        uiElem.style.backgroundPosition = "center";
+        return;
     }
     else {
         mobileAnalyze();

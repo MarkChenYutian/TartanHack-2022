@@ -97,7 +97,7 @@ function setupStream() {
         uiElem.style.backgroundSize = "cover";
         uiElem.style.backgroundPosition = "center";
         document.getElementById("stop").style.display = "none";
-    document.getElementById("start").style.display = "none";
+        document.getElementById("start").style.display = "none";
         return;
     }
     errHandler("Start to setup webRTC Stream...");
