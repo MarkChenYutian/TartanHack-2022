@@ -14,7 +14,7 @@ let src = undefined;
 let det = undefined;
 let cap = undefined;
 
-// const FPS = 30;
+const FPS = 30;
 
 //////////////////////
 

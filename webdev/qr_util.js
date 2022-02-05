@@ -1,6 +1,6 @@
-let qrDetector = new window.BarcodeDetector({
+let qrDetector = window.BarcodeDetector ? new window.BarcodeDetector({
     formats: ['qr_code']
-});
+}): undefined;
 
 function cleanCanvas() {
     let ctx = overlayElem.getContext('2d');
@@ -56,6 +56,15 @@ function calculateIntersection(p1, p2, p3, p4) {
 }
 
 function analyze() {
+    if (qrDetector == undefined){
+
+    }
+    else {
+        mobileAnalyze();
+    }
+}
+
+function mobileAnalyze(){
     qrDetector.detect(canvasElem).then(
         (response) => {
             cleanCanvas();
