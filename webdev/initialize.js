@@ -14,7 +14,7 @@ let src = undefined;
 let det = undefined;
 let cap = undefined;
 
-const FPS = 30;
+// const FPS = 30;
 
 //////////////////////
 
@@ -51,7 +51,8 @@ function initPhase2() {
 
 function setupStream() {
     if (navigator.mediaDevices.getUserMedia) {
-        navigator.mediaDevices.getUserMedia({ video: true })
+        // navigator.mediaDevices.getUserMedia({ video: true })
+        navigator.mediaDevices.getUserMedia({ video: {facingMode: 'environment'} })
             .then (
                 (stream) => {
                     cameraStream = stream;
@@ -75,7 +76,9 @@ function startStream() {
 function execStream() {
     // Use OpenCV to manipulate stream from src
     cap.read(src);
-    cv.flip(src, det, 1);           // Flip across x-axis
-    cv.imshow(canvasElemID, det);   // Show flipped result on canvas
+    // cv.flip(src, det, 1);           // Flip across x-axis
+    // cv.imshow(canvasElemID, det);   // Show flipped result on canvas
+    cv.imshow(canvasElemID, src);
+    analyze();
     setTimeout(execStream, 1000/FPS);
 }
