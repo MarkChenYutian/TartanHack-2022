@@ -82,4 +82,5 @@ function renderPerspective(p0, p1, p2, p3, bboxW, bboxH) {
     //     "#0000FF"
     // );
     boardMat.delete(); T.delete(); perspectiveMat.delete();// dsize.delete();
+    calculateRatio();
 }

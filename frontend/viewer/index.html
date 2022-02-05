@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<head>
+    <link rel="stylesheet" type="text/css" href="./webapp.css" media="screen" />
+    <script src="./render.js" type="text/javascript"></script>
+    <script src="./qr-util.js" type="text/javascript"></script>
+    <script src="./stream-enhance.js" type="text/javascript"></script>
+    <script src="./ui-control.js" type="text/javascript"></script>
+    <script src="./initialize.js" type="text/javascript"></script>
+    <script async src="./opencv-v4.5.5.js" type="text/javascript" onload="onOpenCVReady()"></script>
+</head>
+<script>
+function errHandler(err) {
+    console.log(err);
+}
+</script>
+<style>
+
+</style>
+<body>
+    <video class="stream-window loading-fallBack" id="rawCameraInput" style="object-fit: cover; position:absolute; z-index: 0"></video>
+    <canvas class="stream-window" id="drawOverlay" style="object-fit: cover;background-color: transparent; position: absolute; z-index: 2"></canvas>
+    <div class="ui-frame" id="ui-frame">
+        <div class="inner-frame">
+            <div class="top-bar">
+                <h2 style="color: rgb(151, 21, 21); font-weight: lighter;">The Fence<b>s</b></h2>
+                <div class="Button Group">
+                    <button class="main-btn">ABOUT US</button>
+                    <button class="main-btn" id="stop" onclick="terminateStream();" style="background-color: rgb(151, 21, 21); color: white;">STOP AR</button>
+                    <button class="main-btn" id="start" onclick="setupStream();" style="background-color: rgb(32, 151, 21); color: white;">OPEN AR</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+

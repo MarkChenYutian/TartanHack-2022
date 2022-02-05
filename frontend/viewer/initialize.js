@@ -4,10 +4,9 @@ let streamRunning = false;
 let cameraStream = undefined;
 let videoElemID = "rawCameraInput";
 let videoElem = undefined;
-let canvasElemID = "openCV-Output";
-let canvasElem = undefined;
 let overlayElemID = "drawOverlay";
 let overlayElem = undefined;
+let uiElem = undefined;
 
 let boardElem = document.createElement("img");
 
@@ -26,6 +25,11 @@ let prevRenders = [];
 let ptsCompEpsilon = 2;
 let isCleared = true;
 
+// UI Control Variables
+let widthRatio = undefined;
+let heightRatio = undefined;
+let noVideoSign = undefined;
+
 //////////////////////
 
 function onOpenCVReady() {
@@ -38,40 +42,71 @@ function onOpenCVReady() {
     }
 }
 
+function calculateRatio() {
+    widthRatio = overlayElem.offsetWidth / overlayElem.width;
+    heightRatio = overlayElem.offsetHeight / overlayElem.height;
+}
+
 function initPhase1() {
     videoElem = document.getElementById(videoElemID);
-    canvasElem = document.getElementById(canvasElemID);
     overlayElem = document.getElementById("drawOverlay");
-    boardElem.src = "../static/test-mid.png";
+    uiElem = document.getElementById("ui-frame");
+    boardElem.src = "../../static/test-mid.png";
     boardElem.style.display = "none";
     boardElem.id = "board-src";
     document.body.appendChild(boardElem);
     ctx = overlayElem.getContext('2d');
     videoElem.addEventListener(
         "loadeddata", startStream
-    )
-    errHandler("Exiting initPhase1");
+    );
+    window.addEventListener("resize", calculateRatio);
+    uiElem.addEventListener("click", logClicks);
 }
 
 function initPhase2() {
+    // We used to believe that OpenCV.js can help us detect QR Code ...
+    //
+    // BUT WE WERE WRONG. It simply just didn't work.
+    //
     // There are some bug in OpenCV.js ... this is a work around
     // https://github.com/opencv/opencv/issues/19922
     // videoElem.width = videoElem.videoWidth;
     // videoElem.height = videoElem.videoHeight;
 
-    // context = canvasElem.getContext("2d");
     // src = new cv.Mat(videoElem.videoHeight, videoElem.videoWidth, cv.CV_8UC4)
     // det = new cv.Mat(videoElem.videoHeight, videoElem.videoWidth, cv.CV_8UC4)
     // cap = new cv.VideoCapture(videoElem);
 }
 
+function isIOS() {
+    return [
+        'iPad Simulator',
+        'iPhone Simulator',
+        'iPod Simulator',
+        'iPad',
+        'iPhone',
+        'iPod'
+    ].includes(navigator.platform)
+    // iPad on iOS 13 detection
+    || (navigator.userAgent.includes("Mac") && "ontouchend" in document);
+}
+
 function setupStream() {
+    if (isIOS()) {
+        uiElem.style.background = "url(../../static/iosNotSupport.jpg)";
+        uiElem.style.backgroundSize = "cover";
+        uiElem.style.backgroundPosition = "center";
+        document.getElementById("stop").style.display = "none";
+    document.getElementById("start").style.display = "none";
+        return;
+    }
     errHandler("Start to setup webRTC Stream...");
     if (navigator.mediaDevices.getUserMedia) {
         errHandler("Navigator.mediaDevices.getUserMedia is detected.");
         navigator.mediaDevices.getUserMedia({ video: {facingMode: 'environment'} })
             .then (
                 (stream) => {
+                    uiElem.style.background = "none";
                     stream.getVideoTracks()[0].applyConstraints(
                         { width: 1280, height: 720 }
                     );
@@ -79,6 +114,8 @@ function setupStream() {
                     videoElem.srcObject = cameraStream;
                     videoElem.play();
                     streamRunning = true;
+                    document.getElementById("start").style.display = "none";
+                    document.getElementById("stop").style.display = "inline-block";
                 }
             )
             .catch (

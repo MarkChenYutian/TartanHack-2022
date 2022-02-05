@@ -1,0 +1,47 @@
+.container {
+    border: 10px #333 solid;
+}
+
+.stream-window {
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+.loading-fallBack {
+    background: url(../../static/LoadingVideoStream.jpg);
+    background-size: contain;
+    background-position: center;
+}
+
+body { margin: 0;}
+h2 { margin: 0.2rem; }
+
+.ui-frame {
+    width: 100vw;
+    height: 100vh;
+    background-color: transparent;
+    position: absolute;
+    z-index: 5;
+    /* padding: 1vh 1vw; */
+    font-family: "Microsoft YaHei", "微软雅黑", "Helvetica", "Noto Sans Light", "Arial";
+    font-weight: 400;
+    line-height: 1.6;
+    color: whitesmoke;
+}
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    box-shadow: 0px 10px 20px rgb(0, 0, 0, 10%);
+    padding: 0 1rem;
+}
+
+button.main-btn {
+    background-color: white;
+    padding: 0.5rem;
+    min-width: 6rem;
+    border:rgb(0, 0, 0, 30%) solid 1px;
+}

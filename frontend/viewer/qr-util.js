@@ -58,7 +58,7 @@ function mobileAnalyze(){
                 if (prevRenders[0] != undefined && prevRenders[0][0].rawValue == "UL" && !isCleared &&
                     ptsApprox(response[0].cornerPoints[0], prevRenders[0][0].cornerPoints[0]) &&
                     ptsApprox(response[0].cornerPoints[1], prevRenders[0][0].cornerPoints[1])){
-                        console.log("UL stability enhancement intervene");
+                        // console.log("UL stability enhancement intervene");
                         return;
                 }   // Increase Stability of AR Image.
                 cleanCanvas();
@@ -79,7 +79,7 @@ function mobileAnalyze(){
                 if (prevRenders[0] != undefined && prevRenders[0][1] != undefined && !isCleared &&
                     ptsApprox(qr1.cornerPoints[0], prevRenders[0][0].cornerPoints[0]) &&
                     ptsApprox(qr2.cornerPoints[2], prevRenders[0][1].cornerPoints[2])){
-                        console.log("Bilateral stability enhancement intervene");
+                        // console.log("Bilateral stability enhancement intervene");
                         return;
                 }   // Increase Stability of AR Image.
 
@@ -115,9 +115,20 @@ function mobileAnalyze(){
     );
 }
 
+function updateBoardImg(imgPath) {
+    boardElem.src = imgPath;
+    isCleared = true;
+}
+
 function terminateStream() {
     cameraStream.getTracks().forEach(
         track => {track.stop();}
     );
     streamRunning = false;
+    uiElem.style.background = "url(../../static/NoVideoInput.jpg)";
+    uiElem.style.backgroundSize = "cover";
+    uiElem.style.backgroundPosition = "center";
+    document.getElementById("stop").style.display = "none";
+    document.getElementById("start").style.display = "inline-block";
+    cleanCanvas();
 }
