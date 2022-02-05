@@ -1,0 +1,12 @@
+Dockerfile
+*.pyc
+*.pyo
+*.pyd
+__pycache__
+unittest
+.idea
+.vscode
+.git
+.gitignore
+desktop.ini
+.DS_Store
