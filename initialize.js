@@ -57,6 +57,9 @@ function setupStream() {
         navigator.mediaDevices.getUserMedia({ video: {facingMode: 'environment'} })
             .then (
                 (stream) => {
+                    stream.getVideoTracks()[0].applyConstraints(
+                        { width: 1280, height: 720 }
+                    );
                     cameraStream = stream;
                     videoElem.srcObject = cameraStream;
                     videoElem.play();
