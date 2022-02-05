@@ -5,21 +5,18 @@ from firebase_admin import storage
 # initialize
 cred = credentials.Certificate("./security/adminsdk.json")
 initialize_app(cred, {'projectId': 'the-fence-340405', 'storageBucket': 'the-fence-340405.appspot.com'})
+client = firestore.client()
+bucket = storage.bucket()
 
-# db = firestore.client()
 
-# doc_ref = db.collection('users').document('alovelace')
-# doc_ref.set({'first': 'Ada', 'last': 'Lovelace', 'born': 1815})
+def upload_image(filename: str):
+    blob = bucket.blob(f'images/{filename}')
+    blob.upload_from_filename(filename)
+    return blob.public_url
 
-# users_ref = db.collection('users')
-# docs = users_ref.stream()
-#
-# for doc in docs:
-#     print(f'{doc.id} => {doc.to_dict()}')
 
-# bucket = storage.bucket()
-# fileName = "TartanHack.png"
-# blob = bucket.blob(fileName)
-# blob.upload_from_filename(fileName)
-# blob.make_public()
-# print("your file url", blob.public_url)
+def download_image(filename: str):
+    blob = bucket.blob(f'images/{filename}')
+    blob.download_to_filename(filename)
+    return filename
+
