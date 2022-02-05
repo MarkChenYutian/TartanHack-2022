@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <head>
-    <script src="./qr_util.js" type="text/javascript"></script>
+    <script src="./render.js" type="text/javascript"></script>
+    <script src="./qr-util.js" type="text/javascript"></script>
+    <script src="./stream-enhance.js" type="text/javascript"></script>
     <script src="./initialize.js" type="text/javascript"></script>
     <script async src="./opencv-v4.5.5.js" type="text/javascript" onload="onOpenCVReady()"></script>
 </head>
@@ -28,5 +30,6 @@ function errHandler(err) {
     <video class="stream-window" id="rawCameraInput" style="object-fit: cover; position:absolute;"></video>
     <canvas class="stream-window" id="openCV-Output" style="object-fit: cover; position:absolute;"></canvas>
     <canvas class="stream-window" id="drawOverlay" style="object-fit: cover;background-color: transparent; position: absolute;"></canvas>
+    <!-- <canvas class="stream-window" id="openCV-debug" style="margin-top: 110vh; position: absolute"></canvas> -->
 </body>
 

@@ -1,4 +1,5 @@
 // Global Variables
+let streamRunning = false;
 
 let cameraStream = undefined;
 let videoElemID = "rawCameraInput";
@@ -7,6 +8,8 @@ let canvasElemID = "openCV-Output";
 let canvasElem = undefined;
 let overlayElemID = "drawOverlay";
 let overlayElem = undefined;
+
+let boardElem = document.createElement("img");
 
 /* OpenCV Variables */
 let context = undefined;
@@ -32,6 +35,11 @@ function initPhase1() {
     videoElem = document.getElementById(videoElemID);
     canvasElem = document.getElementById(canvasElemID);
     overlayElem = document.getElementById("drawOverlay");
+    boardElem.src = "../static/test-small.jpg";
+    boardElem.style.display = "none";
+    boardElem.id = "board-src";
+    document.body.appendChild(boardElem);
+    ctx = overlayElem.getContext('2d');
     videoElem.addEventListener(
         "loadeddata", startStream
     )
@@ -63,6 +71,7 @@ function setupStream() {
                     cameraStream = stream;
                     videoElem.srcObject = cameraStream;
                     videoElem.play();
+                    streamRunning = true;
                 }
             )
             .catch (
@@ -79,14 +88,4 @@ function setupStream() {
 function startStream() {
     initPhase2();
     execStream();
-}
-
-function execStream() {
-    // Use OpenCV to manipulate stream from src
-    cap.read(src);
-    // cv.flip(src, det, 1);           // Flip across x-axis
-    // cv.imshow(canvasElemID, det);   // Show flipped result on canvas
-    cv.imshow(canvasElemID, src);
-    analyze();
-    setTimeout(execStream, 1000/FPS);
 }
