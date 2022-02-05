@@ -25,11 +25,26 @@ function errHandler(err) {
     }
     body { margin: 0;}
     h3 { padding-left: 1rem; }
+
+    .ui-frame {
+        width: 100vw;
+        height: 100vh;
+        background-color: transparent;
+        position: absolute;
+        z-index: 5;
+        padding: 1vh 1vw;
+        font-family: "Microsoft YaHei", "微软雅黑", "Helvetica", "Noto Sans Light", "Arial";
+        font-weight: 400;
+        line-height: 1.6;
+        color: whitesmoke;
+    }
 </style>
 <body>
-    <video class="stream-window" id="rawCameraInput" style="object-fit: cover; position:absolute;"></video>
-    <canvas class="stream-window" id="openCV-Output" style="object-fit: cover; position:absolute;"></canvas>
-    <canvas class="stream-window" id="drawOverlay" style="object-fit: cover;background-color: transparent; position: absolute;"></canvas>
-    <!-- <canvas class="stream-window" id="openCV-debug" style="margin-top: 110vh; position: absolute"></canvas> -->
+    <video class="stream-window" id="rawCameraInput" style="object-fit: cover; position:absolute; z-index: 0"></video>
+    <!-- <canvas class="stream-window" id="openCV-Output" style="object-fit: cover; position:absolute; z-index: 1"></canvas> -->
+    <canvas class="stream-window" id="drawOverlay" style="object-fit: cover;background-color: transparent; position: absolute; z-index: 2"></canvas>
+    <div class="ui-frame">
+        <h1>The Fences - Web Pseudo AR</h1>
+    </div>
 </body>
 

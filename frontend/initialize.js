@@ -19,6 +19,13 @@ let cap = undefined;
 
 const FPS = 30;
 
+// Stability Enhancement System
+let cleanLatencyCount = 0;
+const cleanLatencyMax = 15;
+let prevRenders = [];
+let ptsCompEpsilon = 2;
+let isCleared = true;
+
 //////////////////////
 
 function onOpenCVReady() {
@@ -35,7 +42,7 @@ function initPhase1() {
     videoElem = document.getElementById(videoElemID);
     canvasElem = document.getElementById(canvasElemID);
     overlayElem = document.getElementById("drawOverlay");
-    boardElem.src = "../static/test-small.jpg";
+    boardElem.src = "../static/test-mid.png";
     boardElem.style.display = "none";
     boardElem.id = "board-src";
     document.body.appendChild(boardElem);
@@ -49,13 +56,13 @@ function initPhase1() {
 function initPhase2() {
     // There are some bug in OpenCV.js ... this is a work around
     // https://github.com/opencv/opencv/issues/19922
-    videoElem.width = videoElem.videoWidth;
-    videoElem.height = videoElem.videoHeight;
+    // videoElem.width = videoElem.videoWidth;
+    // videoElem.height = videoElem.videoHeight;
 
-    context = canvasElem.getContext("2d");
-    src = new cv.Mat(videoElem.videoHeight, videoElem.videoWidth, cv.CV_8UC4)
-    det = new cv.Mat(videoElem.videoHeight, videoElem.videoWidth, cv.CV_8UC4)
-    cap = new cv.VideoCapture(videoElem);
+    // context = canvasElem.getContext("2d");
+    // src = new cv.Mat(videoElem.videoHeight, videoElem.videoWidth, cv.CV_8UC4)
+    // det = new cv.Mat(videoElem.videoHeight, videoElem.videoWidth, cv.CV_8UC4)
+    // cap = new cv.VideoCapture(videoElem);
 }
 
 function setupStream() {
