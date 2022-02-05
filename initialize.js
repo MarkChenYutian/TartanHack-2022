@@ -21,8 +21,8 @@ const FPS = 30;
 function onOpenCVReady() {
     // Wait until OpenCV WASM Runtime is ready
     cv['onRuntimeInitialized'] = () => {
-        console.info(cv.getBuildInformation());
-        console.log("Open CV is Ready Now");
+        errHandler(cv.getBuildInformation());
+        errHandler("Open CV is Ready Now");
         initPhase1();
         setupStream();
     }
@@ -35,6 +35,7 @@ function initPhase1() {
     videoElem.addEventListener(
         "loadeddata", startStream
     )
+    errHandler("Exiting initPhase1");
 }
 
 function initPhase2() {
@@ -50,8 +51,9 @@ function initPhase2() {
 }
 
 function setupStream() {
+    errHandler("Start to setup webRTC Stream...");
     if (navigator.mediaDevices.getUserMedia) {
-        // navigator.mediaDevices.getUserMedia({ video: true })
+        errHandler("Navigator.mediaDevices.getUserMedia is detected.");
         navigator.mediaDevices.getUserMedia({ video: {facingMode: 'environment'} })
             .then (
                 (stream) => {
@@ -61,10 +63,13 @@ function setupStream() {
                 }
             )
             .catch (
-                (error) => { console.log(error); }
+                (error) => {
+                    errHandler("Failed to getUserMedia");
+                    errHandler(error);
+                }
             )
     } else {
-        console.warn("Client browser does not support WebRTC. Please use Chrome");
+        errHandler("Try second option");
     }
 }
 

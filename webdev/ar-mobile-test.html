@@ -1,9 +1,18 @@
 <!DOCTYPE html>
 <head>
+    <script src="./test_device.js" type="text/javascript"></script>
     <script src="./qr_util.js" type="text/javascript"></script>
     <script src="./initialize.js" type="text/javascript"></script>
-    <script async src="./opencv-v4.5.5.js" type="text/javascript" onload="onOpenCVReady()"></script>
+    <!-- <script async src="./opencv-v4.5.5.js" type="text/javascript" onload="onOpenCVReady()"></script> -->
 </head>
+<script>
+    try{
+        setwebcam();
+    } catch (e) {
+        console.log(e);
+    }
+    console.log("Start");
+</script>
 <style>
     .container {
         border: 10px #333 solid;
@@ -23,5 +32,7 @@
     <video class="stream-window" id="rawCameraInput" style="object-fit: cover; position:absolute;"></video>
     <canvas class="stream-window" id="openCV-Output" style="object-fit: cover; position:absolute;"></canvas>
     <canvas class="stream-window" id="drawOverlay" style="object-fit: cover;background-color: transparent; position: absolute;"></canvas>
-</body>
 
+    <div id="console-output" style="margin-top: 110vh;"></div>
+    <h1>Mobile Page</h1>
+</body>
