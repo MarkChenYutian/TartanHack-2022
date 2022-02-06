@@ -1,10 +1,10 @@
+# In a Sentence, What is It? 
+
+Our inspiration came from The Fence at CMU:
+
+By providing a synchronized, immersive AR experience across different platforms, we aim to build a bond between virtual space and physical world, allowing people to share their ideas openly, just like role of The Fence.
+
 # How We Implement These Magical Apps? (Brief Version)
-
-## Serverless Backend
-
-For backend support, we deploy our product on `Firebase` and `Cloud Run` from Google Cloud Platform. The nature of cloud service allow our app to have low latency and high availability across different splatforms.
-
-![Serverless Backend](https://user-images.githubusercontent.com/89672451/152683764-030f614c-e7c3-4dc1-8f72-7833ac1443a5.jpg)
 
 ## Mobile Application
 
@@ -19,6 +19,12 @@ For web application, we use the `WebRTC`, `OpenCV` and `WebAssembly` to create a
 ![Web Application](https://user-images.githubusercontent.com/47029019/152671055-229ad26c-dadf-4f90-a28b-d92802374c21.jpg)
 
 Specifically, we use the QR Code not only to identify the current board's ID, but also calculate the perspective matrix of current frame and use it to draw AR overlay on browser.
+
+## Serverless Backend
+
+For backend support, we deploy our product on `Firebase` and `Cloud Run` from Google Cloud Platform. The nature of cloud service allow our app to have low latency and high availability across different splatforms.
+
+![Serverless Backend](https://user-images.githubusercontent.com/89672451/152683764-030f614c-e7c3-4dc1-8f72-7833ac1443a5.jpg)
 
 # Technical Details
 
@@ -61,8 +67,8 @@ Our solution for these cases are:
 
 For 1) When the new QR Code `P1` is within three pixels away from previos detection result (`P1'`), we will NOT update the AR Render. This can minimize the "shaking" of AR content, and provide a better user experience.
 
-<center><img src="https://user-images.githubusercontent.com/47029019/152673584-0124049d-506e-456f-802f-09d08c06fbe7.jpeg" width="30%"/></center>
-
-In the image above, if the black square is detection result at frame `t`, the AR content will be re-rendered only in case of green frames. If the detection result at `t + 1` is the red bounding box, then AR content will NOT be re-rendered.
+| Illustration | Explaination |
+|----|----|
+|![illustration](https://user-images.githubusercontent.com/47029019/152673584-0124049d-506e-456f-802f-09d08c06fbe7.jpeg)| If the black square is detection result at frame `t`, the AR content will be re-rendered only in case of green frames. If the detection result at `t + 1` is the red bounding box, then AR content will NOT be re-rendered.|
 
 For 2) When there are only 1-2 frames with no QR code is detected, the renderer will Not clear the canvas at once. Instead, it will begin to count the number of frame without QR detection result. If the counter reach 10, the canvas will then be cleared. This can greatly reduce the flickering problem in AR Content.
