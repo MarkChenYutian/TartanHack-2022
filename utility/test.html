@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<script>
+    function onOpenCVReady() {
+        cv['onRuntimeInitialized'] = () => {
+            document.getElementById("input").crossOrigin = "anonymous";
+            let M = cv.imread("input");
+        }
+    }
+</script>
+<script async src="../frontend/viewer/opencv-v4.5.5.js" type="text/javascript" onload="onOpenCVReady()"></script>
+<html>
+<body>
+    <img id="input" src="https://storage.googleapis.com/the-fence-340405.appspot.com/images/6d44ae39.jpg"/>
+    <canvas id="output">
+    </canvas>
+</body>
+</html>

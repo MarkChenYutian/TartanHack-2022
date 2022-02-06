@@ -13,6 +13,7 @@
     background: url(../../static/LoadingVideoStream.jpg);
     background-size: contain;
     background-position: center;
+    background-repeat: no-repeat;
 }
 
 body { margin: 0;}
@@ -44,4 +45,8 @@ button.main-btn {
     padding: 0.5rem;
     min-width: 6rem;
     border:rgb(0, 0, 0, 30%) solid 1px;
+}
+
+button.hoverable:hover {
+    background-color:rgb(240, 240, 240);
 }

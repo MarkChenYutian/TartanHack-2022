@@ -51,6 +51,23 @@ function ptsApprox(p1, p2){
     return Math.abs(p1.x - p2.x) < ptsCompEpsilon && Math.abs(p1.y - p2.y < ptsCompEpsilon);
 }
 
+function getPositionIdentifier(qrCode) {
+    // LU-idxxxxxxxxxxx or DR-idxxxxxxxxxxx
+    return qrCode.rawValue.slice(0, 2);
+}
+
+function getBoardIdentifier(qrCode) {
+    //LU-idxxxxxxxxxxx
+    return qrCode.rawValue.slice(3);
+}
+
+
+function updateBoardCache(boardID) {
+    console.log(boardID);
+    currentBoardID = boardID;
+    document.getElementById("board-src").src = "https://storage.googleapis.com/the-fence-340405.appspot.com/images/" + boardID + ".jpg";
+}
+
 function mobileAnalyze(){
     qrDetector.detect(videoElem).then(
         (response) => {
@@ -58,10 +75,13 @@ function mobileAnalyze(){
                 cleanLatencyCount ++;
                 return;
             }
-            
-            
-            if (response.length == 1 && response[0].rawValue == "UL") {
-                if (prevRenders[0] != undefined && prevRenders[0][0].rawValue == "UL" && !isCleared &&
+            if (response.length > 0 && getBoardIdentifier(response[0])!= currentBoardID){
+                document.getElementById("board-src").src = "";
+                updateBoardCache(getBoardIdentifier(response[0]));
+            }
+            if (response.length == 1 && getPositionIdentifier(response[0]) == "LU") {
+                if (prevRenders[0] != undefined && getPositionIdentifier(prevRenders[0][0]) == "LU" 
+                    && !isCleared &&
                     ptsApprox(response[0].cornerPoints[0], prevRenders[0][0].cornerPoints[0]) &&
                     ptsApprox(response[0].cornerPoints[1], prevRenders[0][0].cornerPoints[1])){
                         // console.log("UL stability enhancement intervene");
@@ -79,13 +99,16 @@ function mobileAnalyze(){
                 );
                 isCleared = false;
             } else if (response.length == 2){
-                let qr1 = response[0].rawValue == "UL" ? response[0] : response[1];
-                let qr2 = response[0].rawValue == "UL" ? response[1] : response[0];
+                let qr1 = getPositionIdentifier(response[0]) == "LU" ? 
+                    response[0] : response[1];
+                let qr2 = getPositionIdentifier(response[0]) == "LU" ? 
+                    response[1] : response[0];
+
+                // console.log({ qr1: qr1, qr2: qr2 });
 
                 if (prevRenders[0] != undefined && prevRenders[0][1] != undefined && !isCleared &&
                     ptsApprox(qr1.cornerPoints[0], prevRenders[0][0].cornerPoints[0]) &&
                     ptsApprox(qr2.cornerPoints[2], prevRenders[0][1].cornerPoints[2])){
-                        // console.log("Bilateral stability enhancement intervene");
                         return;
                 }   // Increase Stability of AR Image.
 

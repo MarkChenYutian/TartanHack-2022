@@ -1,4 +1,4 @@
-# TartanHack 2020 - The FenceS
+# TartanHack 2020 - The Fences
 
 ## How we Implement This Magical App?
 

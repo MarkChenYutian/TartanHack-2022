@@ -1,0 +1,52 @@
+body {
+    /* padding: 1vh 1vw; */
+    font-family: "Microsoft YaHei", "微软雅黑", "Helvetica", "Noto Sans Light", "Arial";
+    font-weight: 400;
+    line-height: 1.6;
+    color: rgb(20, 20, 20);
+    margin: 0;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+}
+
+.top-bar {
+    padding: 0 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    z-index: 1;
+}
+
+.top-bar h2 {
+    margin: 0.3rem 0;
+    font-weight: lighter;
+    color: rgb(151, 21, 21);
+}
+
+button.main-btn {
+    background-color: white;
+    padding: 0.5rem;
+    min-width: 6rem;
+    border:rgb(0, 0, 0, 30%) solid 1px;
+}
+
+button.main-btn:hover {
+    background-color:rgb(240, 240, 240);
+}
+
+.framework {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    align-content: flex-start;
+}
+
+.toolbox {
+    background-color: white;
+    box-shadow: 0px 10px 20px rgb(0, 0, 0, 10%);
+    z-index: 0;
+    padding: 0 1rem;
+}

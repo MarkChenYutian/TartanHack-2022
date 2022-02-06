@@ -41,6 +41,12 @@ function writeText(point, text){
     ctx.fillText(text, point.x, point.y);
 }
 
+function isLoaded(imgElem) {
+    if (! imgElem.complete || imgElem.naturalWidth === 0) {
+        return false;
+    } return true;
+}
+
 function getPerspectiveMatrix(p1, p2, p3, p4, bboxW, bboxH)
 // Originally p1, p2, p3, p4 in QR detected.
 {
@@ -68,7 +74,12 @@ function getPerspectiveMatrix(p1, p2, p3, p4, bboxW, bboxH)
 }
 
 function renderPerspective(p0, p1, p2, p3, bboxW, bboxH) {
-    let boardMat = cv.imread("board-src");
+    let boardMat = undefined;
+    if (isLoaded(document.getElementById("board-src"))){
+        boardMat = cv.imread("board-src");
+    } else {
+        boardMat = cv.imread("loading");
+    }
     T = getPerspectiveMatrix(p0, p1, p2, p3, bboxW, bboxH);
     let perspectiveMat = new cv.Mat(boardElem.height, boardElem.width, cv.CV_8UC4);
     let dsize = new cv.Size(overlayElem.width, overlayElem.height);

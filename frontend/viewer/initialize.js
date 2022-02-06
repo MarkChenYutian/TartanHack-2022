@@ -30,6 +30,9 @@ let widthRatio = undefined;
 let heightRatio = undefined;
 let noVideoSign = undefined;
 
+// Board Image Cache
+let currentBoardID = undefined;
+
 //////////////////////
 
 function onOpenCVReady() {
@@ -61,6 +64,7 @@ function initPhase1() {
     );
     window.addEventListener("resize", calculateRatio);
     uiElem.addEventListener("click", logClicks);
+    boardElem.crossOrigin="anonymous";
 }
 
 function initPhase2() {
