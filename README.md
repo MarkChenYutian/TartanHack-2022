@@ -43,7 +43,7 @@ The `barcodeDetector` provided by Chrome is fast, but also unstable. Minor chang
 
 If we render every frame based on the result of QR Scanner directly, the content will be highly unstable and have poor user experience.
 
-| Before Stablization | After Stablization |
+| Before Stabilization | After Stabilization |
 |----|----|
 |![BadExample-min](https://user-images.githubusercontent.com/47029019/152672103-b7260f7c-171b-4b82-894c-69c18187a250.gif)|![GoodExample-min](https://user-images.githubusercontent.com/47029019/152672171-288b6b09-8fe7-4a75-8b52-c317f3769cdb.gif)|
 
