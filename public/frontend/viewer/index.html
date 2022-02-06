@@ -31,6 +31,20 @@ function errHandler(err) {
             </div>
         </div>
     </div>
+    <div class="ui-frame" id="popup-layer" style="display: none;">
+        <div class="popup">
+            <h2 style="color: rgb(151, 21, 21); font-weight: lighter;">Go to Editor?</h2>
+            <p>You click the board in AR window! Do you want to edit it?</p>
+            <p>Clicking "confirm" will forward you to the online editor.</p>
+            <hr/>
+            <p style="font-size: smaller;"><i>Board ID: <span id="boardInformationDebug"></span></i></p>
+
+            <div style="display: flex;">
+                <button class="main-btn hoverable" style="margin: 1rem 0.5rem 1rem 0;" onclick="hidePopup();">CENCEL</button>
+                <button class="main-btn" id="stop" style="margin: 1rem 0 1rem 0.5rem; background-color: rgb(151, 21, 21); color: white;" onclick="window.location.href='/frontend/editor/';">CONFIRM</button>
+            </div>
+        </div>
+    </div>
     <img src="../../static/LoadingBoard-400.jpeg" id="loading" style="display: none;" crossOrigin="anonymous"/>
 </body>
 

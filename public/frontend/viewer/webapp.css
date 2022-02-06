@@ -50,3 +50,14 @@ button.main-btn {
 button.hoverable:hover {
     background-color:rgb(240, 240, 240);
 }
+
+.popup {
+    background-color: rgb(255, 255, 255, 90%);
+    backdrop-filter: blur(6px);
+    color: #333;
+    position: absolute;
+    z-index: 6;
+    width: 40vw; height: 40vh;
+    transform: translateX(calc(50vw - 20vw)) translateY(calc(50vh - 20vh));
+    padding: 2rem;
+}

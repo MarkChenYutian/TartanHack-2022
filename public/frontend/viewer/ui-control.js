@@ -12,6 +12,15 @@ function logClicks(event) {
 
 function onClickBoard() {
     console.log("Click Board!");
-    window.location.href="/frontend/editor/";
+    showPopup();
 }
 
+
+function showPopup() {
+    document.getElementById("boardInformationDebug").innerText = currentBoardID;
+    document.getElementById("popup-layer").style.display = "block";
+}
+
+function hidePopup() {
+    document.getElementById("popup-layer").style.display = "none";
+}
