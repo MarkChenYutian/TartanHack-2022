@@ -1,5 +1,5 @@
 import qrcode
 
-msg = "LU-6d44ae39"
-qrcode.make(msg).save("LUresult.png")
+msg = "DR-4jc83kc9"
+qrcode.make(msg).save("DRresult.png")
 print("Finish")
