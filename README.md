@@ -45,7 +45,7 @@ If we render every frame based on the result of QR Scanner directly, the content
 
 | Before Stabilization | After Stabilization |
 |----|----|
-|![BadExample-min](https://user-images.githubusercontent.com/47029019/152672103-b7260f7c-171b-4b82-894c-69c18187a250.gif)|![GoodExample-min](https://user-images.githubusercontent.com/47029019/1526![Cloud Run](https://user-images.githubusercontent.com/89672451/152683744-7204627a-2dfc-4823-8f3e-d899657a5d44.png)
+|![BadExample-min](https://user-images.githubusercontent.com/47029019/152672103-b7260f7c-171b-4b82-894c-69c18187a250.gif)|![GoodExample-min](https://user-images.githubusercontent.com/47029019/152672171-288b6b09-8fe7-4a75-8b52-c317f3769cdb.gif)
 72171-288b6b09-8fe7-4a75-8b52-c317f3769cdb.gif)|
 
 When a new detection result arrives, in two cases we don't need to update our render result:
