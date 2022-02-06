@@ -1,23 +1,59 @@
 <!DOCTYPE html>
 <head>
     <link rel="stylesheet" type="text/css" href="./editor-style.css" media="screen" />
+    <script type="text/javascript" src="./loadImage.js"></script>
 </head>
 <html>
 <body>
     <div class="top-bar">
+        <img src="../../static/icon512.png" style="display: inline-block; height: 3rem; width: 3rem;">
         <h2>The Fence<b>s</b> - Online Editor</h2>
+        <p>Current Board ID: <i><span id="boardID"></span></i></p>
         <div>
-            <button class="main-btn hoverable">ABOUT US</button>
+            <button class="main-btn hoverable" onclick="window.location.href='https://markchenyutian.github.io/TartanHack-2022/'">ABOUT US</button>
             <button
                 class="main-btn"
                 onclick="window.location.href='/frontend/viewer'"
                 style="background-color: rgb(32, 151, 21); color: white;">OPEN AR</button>
         </div>
     </div>
-    <div class="toolbox" style="display: flex;">
-        <p> Test A </p>
-        <p> Test B </p>
+    <div class="toolbox" style="display: flex; padding-bottom: 1rem; align-items: center;">
+        <button class="main-btn" onclick="startDrawLine();">
+            <img src="./icons/line.svg" style="display: inline-block; height: 1.5rem; width: 1.5rem; margin-bottom: -0.4rem;">
+            Line Tool
+        </button>
+        <button class="main-btn">
+            <img src="./icons/pen.svg" style="display: inline-block; height: 1.5rem; width: 1.5rem; margin-bottom: -0.4rem;">
+            Pen Tool
+        </button>
+        <button class="main-btn" onclick="startRectangle();">
+            <img src="./icons/rect.svg" style="display: inline-block; height: 1.5rem; width: 1.5rem; margin-bottom: -0.4rem;">
+            Rectangle Tool
+        </button>
+        <button class="main-btn" onclick="startPolygonPhase1();">
+            <img src="./icons/poly.svg" style="display: inline-block; height: 1.5rem; width: 1.5rem; margin-bottom: -0.4rem;">
+            Polygon Tool
+        </button>
+        <button class="main-btn">
+            <img src="./icons/img.svg" style="display: inline-block; height: 1.5rem; width: 1.5rem; margin-bottom: -0.4rem;">
+            Image Tool
+        </button>
+        <p>Current color: &nbsp;</p>
+        <input id="colorSelector" class="color-selector" type="color">
+        <p>Line width: &nbsp;</p>
+        <input id="widthSelector" class="width-selector" type="number">
+        <div style="display: none;" id="vertex-query">
+            <p>#Vertex: &nbsp;</p>
+            <input id="vertexSelector" class="width-selector" type="number">
+            <button class="main-btn" onclick="startPolygonPhase2();">Confirm</button>
+        </div>
     </div>
-    <canvas style="background-color: whitesmoke; flex-grow: 1;"></canvas>
+    <canvas id="main-img" style="background-color: whitesmoke; flex-grow: 1;"></canvas>
+    <script>
+        loadImage();
+        document.getElementById("main-img").addEventListener(
+            "click", writeClickPosition
+        );
+    </script>
 </body>
 </html>

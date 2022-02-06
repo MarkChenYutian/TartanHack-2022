@@ -13,18 +13,16 @@ function errHandler(err) {
     console.log(err);
 }
 </script>
-<style>
-
-</style>
 <body>
     <video class="stream-window loading-fallBack" id="rawCameraInput" style="object-fit: cover; position:absolute; z-index: 0"></video>
     <canvas class="stream-window" id="drawOverlay" style="object-fit: cover;background-color: transparent; position: absolute; z-index: 2"></canvas>
     <div class="ui-frame" id="ui-frame">
         <div class="inner-frame">
             <div class="top-bar">
+                <img src="../../static/icon512.png" style="display: inline-block; height: 2rem; width: 2rem;">
                 <h2 style="color: rgb(151, 21, 21); font-weight: lighter;">The Fence<b>s</b></h2>
                 <div class="Button Group">
-                    <button class="main-btn hoverable">ABOUT US</button>
+                    <button class="main-btn hoverable" onclick="window.location.href='https://markchenyutian.github.io/TartanHack-2022/'">ABOUT US</button>
                     <button class="main-btn" id="stop" onclick="terminateStream();" style="background-color: rgb(151, 21, 21); color: white;">STOP AR</button>
                     <button class="main-btn" id="start" onclick="setupStream();" style="background-color: rgb(32, 151, 21); color: white;">OPEN AR</button>
                 </div>
@@ -41,7 +39,7 @@ function errHandler(err) {
 
             <div style="display: flex;">
                 <button class="main-btn hoverable" style="margin: 1rem 0.5rem 1rem 0;" onclick="hidePopup();">CENCEL</button>
-                <button class="main-btn" id="stop" style="margin: 1rem 0 1rem 0.5rem; background-color: rgb(151, 21, 21); color: white;" onclick="window.location.href='/frontend/editor/';">CONFIRM</button>
+                <button class="main-btn" id="stop" style="margin: 1rem 0 1rem 0.5rem; background-color: rgb(151, 21, 21); color: white;" onclick="window.location.href='/frontend/editor/?'+ currentBoardID;">CONFIRM</button>
             </div>
         </div>
     </div>

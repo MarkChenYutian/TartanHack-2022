@@ -31,6 +31,16 @@ button.main-btn {
     padding: 0.5rem;
     min-width: 6rem;
     border:rgb(0, 0, 0, 30%) solid 1px;
+    margin-right: 1rem;
+}
+
+.color-selector {
+    background-color: white;
+    padding: 0rem;
+    min-width: 6rem;
+    /* min-height: 2rem; */
+    border:rgb(0, 0, 0, 30%) solid 1px;
+    margin-right: 1rem;
 }
 
 button.main-btn:hover {
