@@ -80,10 +80,11 @@ function mobileAnalyze(){
                 updateBoardCache(getBoardIdentifier(response[0]));
             }
             if (response.length == 1 && getPositionIdentifier(response[0]) == "LU") {
-                if (prevRenders[0] != undefined && getPositionIdentifier(prevRenders[0][0]) == "LU" 
-                    && !isCleared &&
+                if (!isCleared &&
+                    (prevRenders[0] != undefined && getPositionIdentifier(prevRenders[0][0]) == "LU" 
+                    &&
                     ptsApprox(response[0].cornerPoints[0], prevRenders[0][0].cornerPoints[0]) &&
-                    ptsApprox(response[0].cornerPoints[1], prevRenders[0][0].cornerPoints[1])){
+                    ptsApprox(response[0].cornerPoints[1], prevRenders[0][0].cornerPoints[1]))){
                         // console.log("UL stability enhancement intervene");
                         return;
                 }   // Increase Stability of AR Image.
@@ -106,9 +107,10 @@ function mobileAnalyze(){
 
                 // console.log({ qr1: qr1, qr2: qr2 });
 
-                if (prevRenders[0] != undefined && prevRenders[0][1] != undefined && !isCleared &&
+                if (!isCleared &&
+                    (prevRenders[0] != undefined && prevRenders[0][1] != undefined &&
                     ptsApprox(qr1.cornerPoints[0], prevRenders[0][0].cornerPoints[0]) &&
-                    ptsApprox(qr2.cornerPoints[2], prevRenders[0][1].cornerPoints[2])){
+                    ptsApprox(qr2.cornerPoints[2], prevRenders[0][1].cornerPoints[2]))){
                         return;
                 }   // Increase Stability of AR Image.
 
