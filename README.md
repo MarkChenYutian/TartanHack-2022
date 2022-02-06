@@ -1,8 +1,17 @@
+![THE_FENCES](https://user-images.githubusercontent.com/47029019/152687484-e19fe892-60c9-49de-b4ae-1b0022a683be.jpg)
+
 # In a Sentence, What is It? 
 
 Our inspiration came from The Fence at CMU:
 
 By providing a synchronized, immersive AR experience across different platforms, we aim to build a bond between virtual space and physical world, allowing people to share their ideas openly, just like role of The Fence.
+
+
+# Short Demo
+
+| iOS Application | Web Application |
+|---|---|
+|![ios-demo-min](https://user-images.githubusercontent.com/47029019/152687716-21fb26b1-a8f5-4d14-b952-7df44f0b2eaa.gif)|![web-demo-min](https://user-images.githubusercontent.com/47029019/152687732-d309165a-c033-444b-8bb8-8011d533efcf.gif)|
 
 # How We Implement These Magical Apps? (Brief Version)
 
