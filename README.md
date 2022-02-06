@@ -2,7 +2,7 @@
 
 ## Serverless Backend
 
-For backend support, we deploy our product on `Firebase` and `Cloud Run` from Google Cloud Platform. The nature of cloud service allow our app have low latency and high availability across platforms.
+For backend support, we deploy our product on `Firebase` and `Cloud Run` from Google Cloud Platform. The nature of cloud service allow our app to have low latency and high availability across different splatforms.
 
 ![Serverless Backend](https://user-images.githubusercontent.com/89672451/152683764-030f614c-e7c3-4dc1-8f72-7833ac1443a5.jpg)
 
