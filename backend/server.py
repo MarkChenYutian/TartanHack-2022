@@ -2,8 +2,8 @@
 import firebase
 
 # external dependencies
-import uuid
 import os
+import uuid
 import uvicorn
 import aiofiles
 from fastapi import FastAPI, Request, Response
