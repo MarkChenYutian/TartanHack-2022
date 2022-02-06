@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "NXDrawKit",
+        "repositoryURL": "https://github.com/Nicejinux/NXDrawKit",
+        "state": {
+          "branch": "master",
+          "revision": "c1878155823c897b970117fe139defb4d402c063",
+          "version": null
+        }
+      }
+    ]
+  },
+  "version": 1
+}
